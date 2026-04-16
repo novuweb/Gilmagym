@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gimnasio Gilma | Tavernes de la Valldigna – Fuerza, Disciplina y Comunidad</title>
+  <meta name="description" content="Gimnasio Gilma en Tavernes de la Valldigna, Valencia. Musculación, Spinning, Kickboxing, Zumba y Funcional. Desde 34,99€/mes. ¡Ven a entrenar con nosotros!" />
+  <meta name="keywords" content="gimnasio Tavernes de la Valldigna, gym Valencia, musculación, spinning, kickboxing, zumba, entrenamiento funcional, Gilma" />
+  <meta property="og:title" content="Gimnasio Gilma | Tavernes de la Valldigna" />
+  <meta property="og:description" content="Tu gimnasio familiar de confianza. Musculación, Spinning, Kickboxing, Funcional y Zumba desde 34,99€/mes." />
+  <meta property="og:image" content="hero.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #4A9FD4;
+      --blue-dk: #2d7aaa;
+      --black:   #0a0a0a;
+      --dark:    #111111;
+      --grey:    #1a1a1a;
+      --lgrey:   #f2f4f7;
+      --white:   #ffffff;
+      --gold:    #f5c518;
+      --radius:  14px;
+      --font-title: 'Bebas Neue', sans-serif;
+      --font-body:  'Inter', sans-serif;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a  { text-decoration: none; color: inherit; }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-left  { opacity:0; transform:translateX(-50px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right { opacity:0; transform:translateX( 50px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity:1; transform:none; }
+
+    /* ===== 1. BANNER SUPERIOR ===== */
+    .top-banner {
+      background: var(--blue);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 9px 0;
+      position: relative;
+      z-index: 200;
+    }
+    .top-banner-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+    .top-banner-track span {
+      font-family: var(--font-body);
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: .04em;
+      padding: 0 3rem;
+      text-transform: uppercase;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== 2. NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 37px;
+      left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(10,10,10,.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 2px 30px rgba(0,0,0,.5);
+    }
+    .navbar-logo img {
+      height: 46px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      transition: transform var(--transition);
+    }
+    .navbar-logo img:hover { transform: scale(1.05); }
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      list-style: none;
+    }
+    .navbar-links a {
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .navbar-links a::after {
+      content:'';
+      position:absolute; bottom:-3px; left:0; right:0;
+      height:2px; background:var(--blue);
+      transform:scaleX(0); transition:transform var(--transition);
+    }
+    .navbar-links a:hover { color: var(--white); }
+    .navbar-links a:hover::after { transform:scaleX(1); }
+    .navbar-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: .4rem 1.1rem;
+      border-radius: 6px;
+      font-size: .8rem !important;
+      transition: background var(--transition) !important;
+    }
+    .navbar-cta:hover { background: var(--blue-dk) !important; }
+    .navbar-cta::after { display:none !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none; border: none;
+      z-index: 101;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2.5px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,.97);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      letter-spacing: .06em;
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+
+    @media (max-width: 900px) {
+      .navbar-links { display: none; }
+      .hamburger    { display: flex; }
+      .mobile-menu  { display: flex; }
+    }
+
+    /* ===== 3. HERO ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('hero.jpg') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.62) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.75) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 1.5rem;
+      max-width: 860px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeSlideDown .7s .3s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      line-height: .92;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-shadow: 0 4px 40px rgba(0,0,0,.5);
+      opacity: 0;
+      animation: fadeSlideDown .75s .5s forwards;
+    }
+    .hero-title em { color: var(--blue); font-style: normal; }
+    .hero-subtitle {
+      margin-top: 1.2rem;
+      font-size: clamp(.95rem, 2.2vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255,255,255,.85);
+      letter-spacing: .03em;
+      opacity: 0;
+      animation: fadeSlideDown .75s .7s forwards;
+    }
+    .hero-btns {
+      margin-top: 2.4rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeSlideDown .75s .9s forwards;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .9rem 2.2rem;
+      border-radius: 8px;
+      border: 2px solid var(--blue);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--blue-dk);
+      border-color: var(--blue-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(74,159,212,.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .9rem 2.2rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255,255,255,.65);
+      cursor: pointer;
+      transition: border-color var(--transition), color var(--transition), transform var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      gap: .5rem;
+      opacity: 0;
+      animation: fadeSlideDown .75s 1.2s forwards;
+      z-index: 2;
+    }
+    .hero-scroll-hint span {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .scroll-mouse {
+      width: 22px; height: 36px;
+      border: 2px solid rgba(255,255,255,.35);
+      border-radius: 12px;
+      position: relative;
+    }
+    .scroll-mouse::after {
+      content:'';
+      position:absolute; top:6px; left:50%; transform:translateX(-50%);
+      width:3px; height:7px;
+      background:var(--blue);
+      border-radius:3px;
+      animation: scrollDot 1.6s infinite;
+    }
+    @keyframes scrollDot { 0%,100%{opacity:1;top:6px} 50%{opacity:0;top:16px} }
+    @keyframes fadeSlideDown { from{opacity:0;transform:translateY(25px)} to{opacity:1;transform:none} }
+
+    /* ===== SECTION COMMONS ===== */
+    section { padding: 90px 5%; }
+    .section-label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .7rem;
+    }
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .section-title span { color: var(--blue); }
+    .section-divider {
+      width: 52px; height: 4px;
+      background: var(--blue);
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+    .section-center { text-align: center; }
+    .section-center .section-divider { margin-left: auto; margin-right: auto; }
+
+    /* ===== 4. SERVICIOS ===== */
+    #servicios { background: var(--dark); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+      margin-top: 0;
+    }
+    .service-card {
+      background: var(--grey);
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .service-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(74,159,212,.18);
+    }
+    .service-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.55rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: .55rem;
+    }
+    .service-card p {
+      font-size: .86rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.6;
+    }
+
+    /* ===== 5. PRECIOS ===== */
+    #precios { background: var(--black); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr 1fr;
+      gap: 1.2rem;
+      max-width: 880px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    @media (max-width: 680px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 360px; }
+      .pricing-card.featured { transform: none; }
+    }
+    .pricing-card {
+      background: var(--lgrey);
+      color: var(--black);
+      border-radius: 20px;
+      padding: 2.4rem 1.8rem 2rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 30px rgba(0,0,0,.15);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,.22); }
+    .pricing-card.featured {
+      background: var(--blue);
+      color: var(--white);
+      transform: scale(1.04);
+      box-shadow: 0 12px 50px rgba(74,159,212,.45);
+      z-index: 2;
+    }
+    .pricing-card.featured:hover { transform: scale(1.04) translateY(-5px); }
+    .pricing-badge {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .28rem .9rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .pricing-card.featured .pricing-badge { background: rgba(0,0,0,.25); }
+    .pricing-plan {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+    .pricing-sub {
+      font-size: .82rem;
+      opacity: .65;
+      margin-bottom: 1.4rem;
+      line-height: 1.45;
+      min-height: 2.4em;
+    }
+    .pricing-price {
+      font-family: var(--font-title);
+      font-size: 3.4rem;
+      line-height: 1;
+      letter-spacing: .02em;
+    }
+    .pricing-price sub {
+      font-family: var(--font-body);
+      font-size: .9rem;
+      font-weight: 600;
+      vertical-align: baseline;
+    }
+    .pricing-price-note {
+      font-size: .78rem;
+      opacity: .6;
+      margin-top: .3rem;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-logo {
+      width: 80px;
+      margin: 1.2rem auto 1.6rem;
+      opacity: .25;
+      filter: brightness(0);
+    }
+    .pricing-card.featured .pricing-logo { filter: brightness(0) invert(1); opacity:.3; }
+    .pricing-divider {
+      width: 100%; height: 1px;
+      background: currentColor;
+      opacity: .12;
+      margin-bottom: 1.6rem;
+    }
+    .btn-pricing {
+      display: block;
+      width: 100%;
+      padding: .85rem 1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      border: 2px solid;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .pricing-card:not(.featured) .btn-pricing {
+      background: transparent;
+      color: var(--black);
+      border-color: var(--black);
+    }
+    .pricing-card:not(.featured) .btn-pricing:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+    .pricing-card.featured .btn-pricing {
+      background: var(--white);
+      color: var(--blue);
+      border-color: var(--white);
+    }
+    .pricing-card.featured .btn-pricing:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ===== 6. GALERÍA ===== */
+    #galeria { background: var(--dark); }
+    .gallery-wrap {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      user-select: none;
+    }
+    .gallery-slider {
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    .gallery-track {
+      display: flex;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+    }
+    .gallery-track img {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    @media (max-width: 600px) {
+      .gallery-track img { height: 280px; }
+    }
+    .gallery-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(10,10,10,.75);
+      border: 2px solid rgba(255,255,255,.2);
+      color: var(--white);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition), border-color var(--transition);
+      backdrop-filter: blur(8px);
+      z-index: 5;
+    }
+    .gallery-btn:hover { background: var(--blue); border-color: var(--blue); }
+    .gallery-prev { left: -22px; }
+    .gallery-next { right: -22px; }
+    @media (max-width: 600px) {
+      .gallery-prev { left: 8px; }
+      .gallery-next { right: 8px; }
+    }
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: .55rem;
+      margin-top: 1.4rem;
+    }
+    .gallery-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .gallery-dot.active {
+      background: var(--blue);
+      transform: scale(1.3);
+    }
+    .gallery-counter {
+      text-align: center;
+      font-size: .78rem;
+      color: rgba(255,255,255,.4);
+      margin-top: .7rem;
+      letter-spacing: .06em;
+    }
+
+    /* ===== 7. RESEÑAS — banda infinita ===== */
+    #resenas { background: var(--black); }
+    .reviews-band {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .reviews-row {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+    }
+    .reviews-row--ltr  { animation: bandLTR 38s linear infinite; }
+    .reviews-row--rtl  { animation: bandRTL 34s linear infinite; }
+    @keyframes bandRTL {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes bandLTR {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .rcard {
+      flex: 0 0 auto;
+      width: 300px;
+      background: #f0e8e0;
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+    }
+    @media (max-width: 480px) { .rcard { width: 260px; } }
+    .rcard-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: .05em;
+      margin-bottom: .6rem;
+    }
+    .rcard-text {
+      font-size: .88rem;
+      color: #2a2a2a;
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: .85rem;
+    }
+    .rcard-author {
+      font-weight: 700;
+      font-size: .82rem;
+      color: #7d2035;
+      letter-spacing: .04em;
+    }
+
+    /* ===== 8. HORARIOS ===== */
+    #horarios { background: var(--dark); }
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      max-width: 780px;
+    }
+    .schedule-card {
+      background: var(--grey);
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem;
+      border-left: 4px solid var(--blue);
+      transition: transform var(--transition);
+    }
+    .schedule-card:hover { transform: translateY(-4px); }
+    .schedule-card.closed { border-left-color: #444; }
+    .schedule-day {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .schedule-hours {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .02em;
+    }
+    .schedule-card.closed .schedule-hours { color: #555; }
+    .schedule-note {
+      font-size: .76rem;
+      color: rgba(255,255,255,.38);
+      margin-top: .3rem;
+      letter-spacing: .04em;
+    }
+
+    /* ===== 9. SOBRE NOSOTROS ===== */
+    #nosotros { background: var(--black); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .about-img-wrap { order: -1; }
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    @media (max-width: 600px) { .about-img-wrap img { height: 280px; } }
+    .about-text p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--font-title);
+      font-size: 2.8rem;
+      color: var(--blue);
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-top: .3rem;
+    }
+
+    /* ===== 10. UBICACIÓN ===== */
+    #ubicacion { background: var(--dark); }
+    .map-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+      max-width: 900px;
+      margin: 0 auto 1.8rem;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
+    @media (max-width: 600px) { .map-wrap iframe { height: 260px; } }
+    .map-address {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      justify-content: center;
+      font-size: .95rem;
+      color: rgba(255,255,255,.7);
+    }
+    .map-address span.pin { font-size: 1.2rem; }
+
+    /* ===== 11. CONTACTO ===== */
+    #contacto { background: var(--black); }
+    .contact-wrap {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-btns {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.2rem;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: 1.05rem 2.4rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .contact-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    }
+    .contact-btn-call {
+      background: var(--blue);
+      color: var(--white);
+      border: 2px solid var(--blue);
+    }
+    .contact-btn-call:hover { background: var(--blue-dk); border-color: var(--blue-dk); }
+    .contact-btn-wa {
+      background: #25D366;
+      color: var(--white);
+      border: 2px solid #25D366;
+    }
+    .contact-btn-wa:hover { background: #1ebe5e; border-color: #1ebe5e; }
+    .contact-btn-icon { font-size: 1.1rem; }
+    .contact-hours {
+      font-size: .88rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.8;
+      background: var(--grey);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.8rem;
+      display: inline-block;
+    }
+    .contact-hours strong { color: var(--white); }
+
+    /* ===== 12. FOOTER ===== */
+    footer {
+      background: #050505;
+      padding: 3.5rem 5% 2rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-logo img {
+      height: 50px;
+      filter: brightness(0) invert(1);
+      margin-bottom: 1rem;
+    }
+    .footer-logo p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.4);
+      line-height: 1.65;
+    }
+    .footer-col h4 {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li {
+      font-size: .82rem;
+      color: rgba(255,255,255,.45);
+      margin-bottom: .5rem;
+      line-height: 1.5;
+    }
+    .footer-col ul li strong { color: rgba(255,255,255,.7); }
+    .footer-social {
+      display: flex;
+      gap: .8rem;
+      margin-top: .4rem;
+    }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      background: var(--grey);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .footer-social a:hover { background: var(--blue); transform: translateY(-2px); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+    .footer-bottom p {
+      font-size: .76rem;
+      color: rgba(255,255,255,.3);
+    }
+    .footer-bottom a { color: var(--blue); }
+
+    /* ===== FLOATING WA BUTTON ===== */
+    .float-wa {
+      position: fixed;
+      bottom: 1.8rem; right: 1.8rem;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      z-index: 99;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .float-wa:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,.6);
+    }
+    .float-wa-pulse {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: rgba(37,211,102,.25);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.15);opacity:0} }
+
+    /* ===== UTILITY ===== */
+    .text-blue { color: var(--blue); }
+    .mt-auto { margin-top: auto; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     1. BANNER SUPERIOR ANIMADO
+═══════════════════════════════════════ -->
+<div class="top-banner" aria-label="Promoción">
+  <div class="top-banner-track" aria-hidden="true">
+    <span>🥊 PROMO: Kickboxing + Gym por solo 65€/mes — ¡Plazas limitadas!</span>
+    <span>🏋️ Nuevas máquinas disponibles · ¡Ven a verlas!</span>
+    <span>💃 Clases de Zumba incluidas en tu cuota mensual</span>
+    <span>🥊 PROMO: Kickboxing + Gym por solo 65€/mes — ¡Plazas limitadas!</span>
+    <span>🏋️ Nuevas máquinas disponibles · ¡Ven a verlas!</span>
+    <span>💃 Clases de Zumba incluidas en tu cuota mensual</span>
+    <span>🥊 PROMO: Kickboxing + Gym por solo 65€/mes — ¡Plazas limitadas!</span>
+    <span>🏋️ Nuevas máquinas disponibles · ¡Ven a verlas!</span>
+    <span>💃 Clases de Zumba incluidas en tu cuota mensual</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     2. NAVBAR
+═══════════════════════════════════════ -->
+<nav class="navbar" id="navbar" aria-label="Menú principal">
+  <a href="#inicio" class="navbar-logo" aria-label="Inicio Gimnasio Gilma">
+    <img src="logo.png" alt="Logo Gimnasio Gilma" />
+  </a>
+  <ul class="navbar-links" role="list">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="navbar-cta">Contacto</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
+  <a href="#inicio"    class="nav-close">Inicio</a>
+  <a href="#servicios" class="nav-close">Servicios</a>
+  <a href="#precios"   class="nav-close">Precios</a>
+  <a href="#galeria"   class="nav-close">Galería</a>
+  <a href="#resenas"   class="nav-close">Reseñas</a>
+  <a href="#horarios"  class="nav-close">Horarios</a>
+  <a href="#nosotros"  class="nav-close">Nosotros</a>
+  <a href="#contacto"  class="nav-close">Contacto</a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     3. HERO
+═══════════════════════════════════════ -->
+<section class="hero" id="inicio" aria-label="Portada">
+  <div class="hero-bg" role="img" aria-label="Interior del Gimnasio Gilma"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Tavernes de la Valldigna · Valencia</div>
+    <h1 class="hero-title">Fuerza,<br><em>Disciplina</em><br>y Comunidad</h1>
+    <p class="hero-subtitle">Tu gimnasio de confianza en Tavernes de la Valldigna</p>
+    <div class="hero-btns">
+      <a href="#precios" class="btn-primary">Ver precios</a>
+      <a href="tel:+34962836880" class="btn-outline">📞 Llámanos</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-mouse"></div>
+    <span>Descubre más</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     4. SERVICIOS
+═══════════════════════════════════════ -->
+<section id="servicios" aria-label="Servicios">
+  <div class="section-center reveal">
+    <span class="section-label">Lo que ofrecemos</span>
+    <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon" aria-hidden="true">🏋️</span>
+      <h3>Musculación</h3>
+      <p>Sala equipada con maquinaria de alto nivel para todos los niveles de entrenamiento.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon" aria-hidden="true">🚴</span>
+      <h3>Spinning</h3>
+      <p>Clases de ciclo indoor incluidas en la cuota mensual. Máxima intensidad cardiovascular.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon" aria-hidden="true">🥊</span>
+      <h3>Kickboxing</h3>
+      <p>Clases con instructores especializados. Técnica, potencia y defensa personal.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon" aria-hidden="true">⚡</span>
+      <h3>Funcional</h3>
+      <p>Circuitos y ejercicios de alta intensidad para mejorar fuerza, resistencia y agilidad.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon" aria-hidden="true">💃</span>
+      <h3>Zumba</h3>
+      <p>Baile y fitness para todos los niveles. Divertido, energético y muy efectivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     5. PRECIOS
+═══════════════════════════════════════ -->
+<section id="precios" aria-label="Precios">
+  <div class="section-center reveal">
+    <span class="section-label">Planes y tarifas</span>
+    <h2 class="section-title">Nuestros <span>Precios</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="pricing-grid">
+
+    <!-- Bono 12 -->
+    <div class="pricing-card reveal">
+      <div class="pricing-badge">Bono flexible</div>
+      <div class="pricing-plan">Bono 12</div>
+      <div class="pricing-sub">Sin fecha de caducidad</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-price">50<sub>€</sub></div>
+      <div class="pricing-price-note">12 entradas</div>
+      <img src="logo.png" alt="Gilma" class="pricing-logo" />
+      <a href="https://wa.me/34962836880?text=Hola%2C%20me%20interesa%20el%20plan%20Bono%2012%20del%20Gimnasio%20Gilma%2C%20%C2%BFpod%C3%A9is%20darme%20m%C3%A1s%20info%3F"
+         target="_blank" rel="noopener noreferrer" class="btn-pricing" aria-label="Apuntarse al Bono 12">
+        Apuntarse
+      </a>
+    </div>
+
+    <!-- Mensual (destacado) -->
+    <div class="pricing-card featured reveal">
+      <div class="pricing-badge">⭐ Más popular</div>
+      <div class="pricing-plan">Mensual</div>
+      <div class="pricing-sub">Spinning y entrenamiento incluidos</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-price">34<sub>,99€</sub></div>
+      <div class="pricing-price-note">por mes</div>
+      <img src="logo.png" alt="Gilma" class="pricing-logo" />
+      <a href="https://wa.me/34962836880?text=Hola%2C%20me%20interesa%20el%20plan%20Mensual%20del%20Gimnasio%20Gilma%2C%20%C2%BFpod%C3%A9is%20darme%20m%C3%A1s%20info%3F"
+         target="_blank" rel="noopener noreferrer" class="btn-pricing" aria-label="Apuntarse al plan Mensual">
+        Apuntarse
+      </a>
+    </div>
+
+    <!-- Anual -->
+    <div class="pricing-card reveal">
+      <div class="pricing-badge">Mejor precio</div>
+      <div class="pricing-plan">Anual</div>
+      <div class="pricing-sub">Por solo 350€ al año</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-price">29<sub>€/mes</sub></div>
+      <div class="pricing-price-note">350€ pago único</div>
+      <img src="logo.png" alt="Gilma" class="pricing-logo" />
+      <a href="https://wa.me/34962836880?text=Hola%2C%20me%20interesa%20el%20plan%20Anual%20del%20Gimnasio%20Gilma%2C%20%C2%BFpod%C3%A9is%20darme%20m%C3%A1s%20info%3F"
+         target="_blank" rel="noopener noreferrer" class="btn-pricing" aria-label="Apuntarse al plan Anual">
+        Apuntarse
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     6. GALERÍA
+═══════════════════════════════════════ -->
+<section id="galeria" aria-label="Galería de instalaciones">
+  <div class="section-center reveal">
+    <span class="section-label">Visita virtual</span>
+    <h2 class="section-title">Nuestras <span>Instalaciones</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="gallery-wrap reveal">
+    <div class="gallery-slider" id="gallerySlider">
+      <div class="gallery-track" id="galleryTrack">
+        <img src="galeria1.jpg" alt="Zona de pesas y maquinaria – Gimnasio Gilma" loading="lazy" />
+        <img src="galeria2.jpg" alt="Sala de musculación azul – Gimnasio Gilma" loading="lazy" />
+        <img src="galeria3.jpg" alt="Zona de cardio y bicicletas – Gimnasio Gilma" loading="lazy" />
+        <img src="galeria4.jpg" alt="Sala de máquinas – Gimnasio Gilma" loading="lazy" />
+        <img src="galeria5.jpg" alt="Máquina de piernas – Gimnasio Gilma" loading="lazy" />
+        <img src="galeria6.jpg" alt="Máquina de dorsales – Gimnasio Gilma" loading="lazy" />
+        <img src="galeria7.jpg" alt="Cable crossover funcional – Gimnasio Gilma" loading="lazy" />
+      </div>
+    </div>
+    <button class="gallery-btn gallery-prev" id="galleryPrev" aria-label="Imagen anterior">&#8592;</button>
+    <button class="gallery-btn gallery-next" id="galleryNext" aria-label="Imagen siguiente">&#8594;</button>
+    <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Selector de imagen"></div>
+    <p class="gallery-counter" id="galleryCounter" aria-live="polite">1 / 7</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     7. RESEÑAS — banda infinita
+═══════════════════════════════════════ -->
+<section id="resenas" aria-label="Reseñas de clientes" style="padding-bottom:80px">
+  <div class="section-center reveal">
+    <span class="section-label">Lo que dicen nuestros socios</span>
+    <h2 class="section-title">Reseñas <span>verificadas</span></h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="reviews-band" aria-hidden="true">
+
+    <!-- FILA 1: derecha → izquierda (RTL). Tarjetas 1–8 duplicadas -->
+    <div class="reviews-row reviews-row--rtl">
+      <!-- original -->
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Un gimnasio increíble, las máquinas están impecables y el ambiente es súper motivador."</p><div class="rcard-author">Valentina Romero</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Me sorprendió lo limpio y ordenado que está. Se nota el cuidado en cada detalle."</p><div class="rcard-author">Martín Gutiérrez</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"La atención es de diez. Me explican los ejercicios con mucha paciencia y dedicación."</p><div class="rcard-author">Lucía Fernández</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Precio imbatible para la calidad que ofrecen. No cambio este gym por nada."</p><div class="rcard-author">Facundo Morales</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"El mejor gym de la zona sin dudas. Variedad de máquinas, clases y buena onda."</p><div class="rcard-author">Camila Sosa</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Desde que empecé en Gilma no paré más. Me enganché con las clases de spinning."</p><div class="rcard-author">Diego Pereyra</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Un lugar para toda la familia. Mi pareja y yo entrenamos juntos y estamos encantados."</p><div class="rcard-author">Sofía Blanco</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"El kickboxing es brutal. El profe sabe mucho y las clases se pasan volando."</p><div class="rcard-author">Nicolás Vargas</div></div>
+      <!-- duplicado (seamless loop) -->
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Un gimnasio increíble, las máquinas están impecables y el ambiente es súper motivador."</p><div class="rcard-author">Valentina Romero</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Me sorprendió lo limpio y ordenado que está. Se nota el cuidado en cada detalle."</p><div class="rcard-author">Martín Gutiérrez</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"La atención es de diez. Me explican los ejercicios con mucha paciencia y dedicación."</p><div class="rcard-author">Lucía Fernández</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Precio imbatible para la calidad que ofrecen. No cambio este gym por nada."</p><div class="rcard-author">Facundo Morales</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"El mejor gym de la zona sin dudas. Variedad de máquinas, clases y buena onda."</p><div class="rcard-author">Camila Sosa</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Desde que empecé en Gilma no paré más. Me enganché con las clases de spinning."</p><div class="rcard-author">Diego Pereyra</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Un lugar para toda la familia. Mi pareja y yo entrenamos juntos y estamos encantados."</p><div class="rcard-author">Sofía Blanco</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"El kickboxing es brutal. El profe sabe mucho y las clases se pasan volando."</p><div class="rcard-author">Nicolás Vargas</div></div>
+    </div>
+
+    <!-- FILA 2: izquierda → derecha (LTR). Tarjetas 9–15 duplicadas -->
+    <div class="reviews-row reviews-row--ltr">
+      <!-- original -->
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Las instalaciones son modernas y amplias. Se entrenan cómodo y sin esperas."</p><div class="rcard-author">Florencia Aguirre</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Vengo hace dos años y cada vez mejora más. Siempre agregan cosas nuevas."</p><div class="rcard-author">Tomás Ibáñez</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"La zumba los viernes es lo más. Salgo con energía para toda la semana."</p><div class="rcard-author">Agustina Méndez</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Trato muy cercano. No te sentís un número, te conocen por tu nombre desde el primer día."</p><div class="rcard-author">Ramiro Castillo</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Nunca vi un gym tan bien mantenido. Las máquinas siempre funcionan perfectas."</p><div class="rcard-author">Julieta Navarro</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"La cuota mensual es muy accesible para todo lo que te ofrecen. Totalmente recomendable."</p><div class="rcard-author">Esteban Ríos</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Empecé sin saber nada y en tres meses logré resultados que no imaginaba. ¡Gracias Gilma!"</p><div class="rcard-author">Micaela Torrez</div></div>
+      <!-- duplicado (seamless loop) -->
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Las instalaciones son modernas y amplias. Se entrenan cómodo y sin esperas."</p><div class="rcard-author">Florencia Aguirre</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Vengo hace dos años y cada vez mejora más. Siempre agregan cosas nuevas."</p><div class="rcard-author">Tomás Ibáñez</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"La zumba los viernes es lo más. Salgo con energía para toda la semana."</p><div class="rcard-author">Agustina Méndez</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Trato muy cercano. No te sentís un número, te conocen por tu nombre desde el primer día."</p><div class="rcard-author">Ramiro Castillo</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Nunca vi un gym tan bien mantenido. Las máquinas siempre funcionan perfectas."</p><div class="rcard-author">Julieta Navarro</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"La cuota mensual es muy accesible para todo lo que te ofrecen. Totalmente recomendable."</p><div class="rcard-author">Esteban Ríos</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><p class="rcard-text">"Empecé sin saber nada y en tres meses logré resultados que no imaginaba. ¡Gracias Gilma!"</p><div class="rcard-author">Micaela Torrez</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     8. HORARIOS
+═══════════════════════════════════════ -->
+<section id="horarios" aria-label="Horarios del gimnasio">
+  <div class="section-center reveal">
+    <span class="section-label">Planifica tu visita</span>
+    <h2 class="section-title">Nuestros <span>Horarios</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="schedule-grid">
+    <div class="schedule-card reveal">
+      <div class="schedule-day">Lunes – Viernes</div>
+      <div class="schedule-hours">8:00 – 22:30</div>
+      <div class="schedule-note">Incluye clases de Spinning, Funcional y Zumba</div>
+    </div>
+    <div class="schedule-card reveal">
+      <div class="schedule-day">Sábado</div>
+      <div class="schedule-hours">9:00 – 13:30</div>
+      <div class="schedule-note">Acceso libre a sala de musculación</div>
+    </div>
+    <div class="schedule-card closed reveal">
+      <div class="schedule-day">Domingo</div>
+      <div class="schedule-hours">Cerrado</div>
+      <div class="schedule-note">Descansa y vuelve el lunes con energía</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     9. SOBRE NOSOTROS
+═══════════════════════════════════════ -->
+<section id="nosotros" aria-label="Sobre nosotros">
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <span class="section-label">Nuestra historia</span>
+      <h2 class="section-title">Quiénes <span>Somos</span></h2>
+      <div class="section-divider"></div>
+      <p>Gimnasio Gilma es mucho más que un centro de fitness. Somos un espacio familiar con años de historia en Tavernes de la Valldigna donde cada socio recibe atención personalizada.</p>
+      <p>Desde musculación hasta kickboxing, ofrecemos todo lo que necesitas para alcanzar tus objetivos en un ambiente cercano, profesional y motivador.</p>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Disciplinas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">34<small style="font-size:1.4rem">,99€</small></div>
+          <div class="stat-label">Cuota mensual</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Google Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img-wrap reveal-right">
+      <img src="sobrenosotros.jpg" alt="Vista interior del Gimnasio Gilma con amplia sala de máquinas" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     10. UBICACIÓN
+═══════════════════════════════════════ -->
+<section id="ubicacion" aria-label="Ubicación del gimnasio">
+  <div class="section-center reveal">
+    <span class="section-label">Encuéntranos</span>
+    <h2 class="section-title">Dónde <span>Estamos</span></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="map-wrap reveal">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3087.2!2d-0.2668!3d39.0757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd60b9e5e9a9d8b5%3A0x0!2sCarrer+Rafol%2C+18%2C+46760+Tavernes+de+la+Valldigna%2C+Val%C3%A8ncia!5e0!3m2!1ses!2ses!4v1713000000000"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa de localización del Gimnasio Gilma"
+    ></iframe>
+  </div>
+  <p class="map-address reveal">
+    <span class="pin" aria-hidden="true">📍</span>
+    Carrer Rafol, 18 · 46760 Tavernes de la Valldigna · Valencia, España
+  </p>
+</section>
+
+<!-- ═══════════════════════════════════════
+     11. CONTACTO
+═══════════════════════════════════════ -->
+<section id="contacto" aria-label="Información de contacto">
+  <div class="contact-wrap reveal">
+    <span class="section-label">Habla con nosotros</span>
+    <h2 class="section-title" style="margin-bottom:1rem">Contacta <span>Con Nosotros</span></h2>
+    <div class="section-divider" style="margin:0 auto 2.5rem"></div>
+    <div class="contact-btns">
+      <a href="tel:+34962836880" class="contact-btn contact-btn-call">
+        <span class="contact-btn-icon" aria-hidden="true">📞</span> Llamar ahora
+      </a>
+      <a href="https://wa.me/34962836880" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-wa">
+        <span class="contact-btn-icon" aria-hidden="true">💬</span> Escribir por WhatsApp
+      </a>
+    </div>
+    <div class="contact-hours">
+      <strong>Lunes – Viernes:</strong> 8:00 – 22:30 h<br>
+      <strong>Sábado:</strong> 9:00 – 13:30 h<br>
+      <strong>Domingo:</strong> Cerrado<br><br>
+      <span style="color:rgba(255,255,255,.35)">📞 962 83 68 80</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     12. FOOTER
+═══════════════════════════════════════ -->
+<footer aria-label="Pie de página">
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="logo.png" alt="Logo Gimnasio Gilma" />
+      <p>Tu gimnasio familiar en Tavernes de la Valldigna.<br>Musculación · Spinning · Kickboxing · Funcional · Zumba</p>
+    </div>
+    <div class="footer-col">
+      <h4>Horarios</h4>
+      <ul>
+        <li><strong>Lun – Vie</strong><br>8:00 – 22:30 h</li>
+        <li><strong>Sábado</strong><br>9:00 – 13:30 h</li>
+        <li><strong>Domingo</strong><br>Cerrado</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>📞 <a href="tel:+34962836880" style="color:inherit">962 83 68 80</a></li>
+        <li>📍 Carrer Rafol, 18<br>Tavernes de la Valldigna</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Síguenos</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/gimnas_gilma" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Gimnasio Gilma">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/GimnasiGilma" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Gimnasio Gilma">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Gimnasio Gilma · Tavernes de la Valldigna · Todos los derechos reservados</p>
+    <p>Diseñado con ❤️ para el mejor gimnasio de la Safor</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/34962836880" target="_blank" rel="noopener noreferrer"
+   class="float-wa" aria-label="Contactar por WhatsApp">
+  <div class="float-wa-pulse" aria-hidden="true"></div>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+  'use strict';
+
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  const BANNER_H = document.querySelector('.top-banner').offsetHeight;
+  window.addEventListener('scroll', () => {
+    navbar.style.top = window.scrollY > 10 ? '0' : BANNER_H + 'px';
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* ── Hamburger menu ── */
+  const hamburger   = document.getElementById('hamburger');
+  const mobileMenu  = document.getElementById('mobile-menu');
+  const navCloseAll = document.querySelectorAll('.nav-close');
+
+  function toggleMenu(open) {
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    mobileMenu.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    toggleMenu(!hamburger.classList.contains('open'));
+  });
+  navCloseAll.forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+  mobileMenu.addEventListener('click', e => {
+    if (e.target === mobileMenu) toggleMenu(false);
+  });
+
+  /* ── Intersection Observer (reveal animations) ── */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ── Gallery Carousel ── */
+  (function () {
+    const track   = document.getElementById('galleryTrack');
+    const slides  = track.querySelectorAll('img');
+    const dotsEl  = document.getElementById('galleryDots');
+    const counter = document.getElementById('galleryCounter');
+    const total   = slides.length;
+    let   current = 0;
+    let   startX  = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-label', `Imagen ${i + 1}`);
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+
+    function goTo(n) {
+      current = (n + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsEl.querySelectorAll('.gallery-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+      counter.textContent = `${current + 1} / ${total}`;
+    }
+
+    document.getElementById('galleryPrev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('galleryNext').addEventListener('click', () => goTo(current + 1));
+
+    // Touch / swipe
+    const slider = document.getElementById('gallerySlider');
+    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    // Keyboard arrow support
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+  }());
+
+  /* ── Reviews band: pure CSS animation, no JS needed ── */
+
+  /* ── Smooth scroll for anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = navbar.offsetHeight + 10;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
